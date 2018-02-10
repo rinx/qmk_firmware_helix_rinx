@@ -23,6 +23,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "../../config.h"
 
+#undef HELIX_ROWS
+#define HELIX_ROWS 4
+
+/* key matrix size */
+// Rows are doubled-up
+#if  HELIX_ROWS == 4
+  #define MATRIX_ROWS 8
+  #define MATRIX_COLS 7
+  #define MATRIX_ROW_PINS { D4, C6, D7, E6 }
+#elif HELIX_ROWS == 5
+  #define MATRIX_ROWS 10
+  #define MATRIX_COLS 7
+  #define MATRIX_ROW_PINS { D4, C6, D7, E6, B4 }
+#else
+  #error "expected HELIX_ROWS 4 or 5"
+#endif
+
 /* Use I2C or Serial */
 
 #define USE_I2C
@@ -35,7 +52,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define MASTER_RIGHT
 // #define EE_HANDS
 
-//#define SSD1306OLED
+#define SSD1306OLED
 
 #define USE_SERIAL_PD2
 
@@ -46,8 +63,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #undef RGBLED_NUM
 #define RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 6
-#define RGBLIGHT_LIMIT_VAL 255
+#define RGBLED_NUM 25
+#define RGBLIGHT_LIMIT_VAL 130
 #define RGBLIGHT_HUE_STEP 10
 #define RGBLIGHT_SAT_STEP 17
 #define RGBLIGHT_VAL_STEP 17
