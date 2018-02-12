@@ -26,6 +26,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #undef HELIX_ROWS
 #define HELIX_ROWS 4
 
+#undef MATRIX_ROWS
+#undef MATRIX_COLS
+#undef MATRIX_ROW_PINS
+
 /* key matrix size */
 // Rows are doubled-up
 #if  HELIX_ROWS == 4
