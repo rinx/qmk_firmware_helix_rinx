@@ -47,9 +47,6 @@ extern uint8_t is_master;
 #define NEXTAPP ACTION_MODS_KEY(MOD_LGUI, KC_TAB)
 #define PREVAPP ACTION_MODS_KEY(MOD_LGUI | MOD_LSFT, KC_TAB)
 
-#define SCR_BR_UP KC_PAUS
-#define SCR_BR_DOWN KC_SLCK
-
 //Macros
 #define SEND_KEYMAP_URI 0
 #define MAC_COPY_PASTE 1
@@ -71,11 +68,11 @@ enum custom_keycodes {
   ARROW,
   ADJUST,
   ADMINI,
-  RGBRST,
-  DYNAMIC_MACRO_RANGE
+  RGBRST
+  // DYNAMIC_MACRO_RANGE
 };
 
-#include "dynamic_macro.h"
+// #include "dynamic_macro.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -147,19 +144,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |             |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |SCBRI+|M C/P |M COPY|MPASTE|SPTLGT|             |MSNCTL|DMPLY1|DMREC1|DMSTOP|Vol + |Vol mt|
+   * |      |      |M C/P |M COPY|MPASTE|SPTLGT|             |MSNCTL|      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |SCBRI-|W C/P |W COPY|WPASTE|PREVWK|             |NEXTWK|DMPLY2|DMREC2|KEYMAP|Vol - |      |
+   * |      |      |W C/P |W COPY|WPASTE|PREVWK|             |NEXTWK|      |      |KEYMAP|      |      |
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
    * |      |XXXXXX|      |      |      |      |      |      |      |      |      |      |XXXXXX|      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_FUNCT] = KEYMAP( \
     KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, \
-    _______, SCR_BR_UP, M(MAC_COPY_PASTE), MACCOPY, MACPASTE, SPTLGHT, \
-    MISSIONCTL, DYN_MACRO_PLAY1, DYN_REC_START1, DYN_REC_STOP, KC_VOLU, KC_MUTE, \
-    _______, SCR_BR_DOWN, M(WIN_COPY_PASTE), WINCOPY, WINPASTE, PREVWKS, \
-    NEXTWKS, DYN_MACRO_PLAY2, DYN_REC_START2, M(SEND_KEYMAP_URI), KC_VOLD, _______, \
+    _______, _______, M(MAC_COPY_PASTE), MACCOPY, MACPASTE, SPTLGHT, \
+    MISSIONCTL, _______, _______, _______, _______, _______, \
+    _______, _______, M(WIN_COPY_PASTE), WINCOPY, WINPASTE, PREVWKS, \
+    NEXTWKS, _______, _______, M(SEND_KEYMAP_URI), _______, _______, \
     _______, _______, _______, _______, _______, _______, \
     _______, _______, \
     _______, _______, _______, _______, _______, _______ \
@@ -187,27 +184,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Adjust
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |      | WhDn | MsUp | WhUp |PREVTB|             |NEXTTB| WhDn | MsUp | WhUp |      |      |
+   * |      |      |      |      |      |PREVTB|             |NEXTTB|      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |MsLeft|MsDown|MsRght|SPTLGT|             |MSNCTL|MsLeft|MsDown|MsRght|      |      |
+   * |      |      |      |      |      |SPTLGT|             |MSNCTL|      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |      |      |      |      |PREVWK|             |NEXTWK|      |      |      |      |      |
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
-   * |XXXXXX|      |      |      | Lclk | Rclk |      |      | Lclk | Rclk |      |      |      |ADMINI|
+   * |XXXXXX|      |      |      |      |      |      |      |      |      |      |      |      |ADMINI|
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  KEYMAP( \
-    _______, _______, KC_WH_D, KC_MS_U, KC_WH_U, PREVTAB, NEXTTAB, KC_WH_D, KC_MS_U, KC_WH_U, _______, _______, \
-    _______, _______, KC_MS_L, KC_MS_D, KC_MS_R, SPTLGHT, MISSIONCTL, KC_MS_L, KC_MS_D, KC_MS_R, _______, _______, \
+    _______, _______, _______, _______, _______, PREVTAB, NEXTTAB, _______, _______, _______, _______, _______, \
+    _______, _______, _______, _______, _______, SPTLGHT, MISSIONCTL, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, PREVWKS, NEXTWKS, _______, _______, _______, _______, _______, \
-    _______, _______, _______, _______, KC_BTN1, KC_BTN2, \
+    _______, _______, _______, _______, _______, _______, \
     _______, _______, \
-    KC_BTN1, KC_BTN2, _______, _______, _______, ADMINI \
+    _______, _______, _______, _______, _______, ADMINI \
   ),
 
   /* administrator
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |RESET |      |      |      |      |      |             |      |      |      |      |      |POWER |
+   * |RESET |      |      |      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |RGB on|RGBmod|      |      |      |      |             |      |      |      |      |RGB v-|RGB v+|
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
@@ -217,7 +214,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADMINI] =  KEYMAP( \
-    RESET, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, KC_POWER, \
+    RESET, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, _______, _______, _______, RGB_VAD, RGB_VAI, \
     RGB_HUD, RGB_HUI, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SAD, RGB_SAI, \
     _______, _______, _______, _______, _______, _______, \
@@ -278,9 +275,9 @@ void persistent_default_layer_set(uint16_t default_layer) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
-  if (!process_record_dynamic_macro(keycode, record)) {
-    return false;
-  }
+  // if (!process_record_dynamic_macro(keycode, record)) {
+  //   return false;
+  // }
 
   switch (keycode) {
     case QWERTY:
