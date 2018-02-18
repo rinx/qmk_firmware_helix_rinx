@@ -77,27 +77,27 @@ enum custom_keycodes {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Qwerty
-   * ,-----------------------------------------.              ,-----------------------------------------.
-   * | Tab  |   Q  |   W  |   E  |   R  |   T  |              |   Y  |   U  |   I  |   O  |   P  |  \   |
-   * |------+------+------+------+------+------|              |------+------+------+------+------+------|
-   * |TD_SPL|      |      |      |      |      |              |      |      |      |      | Arrow|  '   |
-   * | Ctrl |   A  |   S  |   D  |   F  |   G  |              |   H  |   J  |   K  |   L  |   ;  | Ctrl |
-   * |------+------+------+------+------+------|              |------+------+------+------+------+------|
-   * |  [   |   Z  |      |      |      |      |              |      |      |      |      |   /  |   ]  |
-   * | Shift| Raise|   X  |   C  |   V  |   B  |              |   N  |   M  |   ,  |   .  | Lower| Shift|
-   * |------+------+------+------+------+------|--------------|------+------+------+------+------+------|
-   * |      | Left |      |      |      | BS   |      |       | Esc  |      |TD_PWK|TD_NWK| Right|      |
-   * |Adjust| Func | Alt  | GUI  |Space | Lower|      |       | Raise| Enter|   (  |   )  | Func | Arrow|
-   * `--------------------------------------------------------------------------------------------------'
+   * ,-----------------------------------------.             ,-----------------------------------------.
+   * | Tab  |   Q  |   W  |   E  |   R  |   T  |             |   Y  |   U  |   I  |   O  |   P  |  \   |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |TD_SPL|      |      |      |      |      |             |      |      |      |      | Arrow|  '   |
+   * | Ctrl |   A  |   S  |   D  |   F  |   G  |             |   H  |   J  |   K  |   L  |   ;  | Ctrl |
+   * |------+------+------+------+------+------|             |------+------+------+------+------+------|
+   * |  [   |   Z  |      |      |      |      |             |      |      |      |      |   /  |   ]  |
+   * | Shift| Raise|   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  | Lower| Shift|
+   * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
+   * |      | Left |      | SPOT |      |      | BS   | Esc  |      |MISSI |TD_PWK|TD_NWK| Right|      |
+   * |Adjust| Func | Alt  | LIGHT| GUI  |Space | Lower| Raise| Enter|ONCTRL|   (  |   )  | Func | Arrow|
+   * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = KEYMAP( \
     KC_TAB,  KC_Q, KC_W, KC_E, KC_R, KC_T, KC_Y, KC_U, KC_I, KC_O, KC_P, KC_BSLS, \
     TD(TD_CTL_SPL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, LT(_ARROW, KC_SCLN), CTL_T(KC_QUOT), \
     SFT_T(KC_LBRC), LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, \
     KC_N, KC_M, KC_COMM, KC_DOT, LT(_LOWER, KC_SLSH), SFT_T(KC_RBRC), \
-    TT(_ADJUST), LT(_FUNCT, KC_LEFT), KC_LALT, KC_LGUI, KC_SPC, LT(_LOWER, KC_BSPC), \
-    _______, _______, \
-    LT(_RAISE, KC_ESC), KC_ENT, TD(TD_PRN_PREVWK), TD(TD_PRN_NEXTWK), LT(_FUNCT, KC_RGHT), TT(_ARROW) \
+    TT(_ADJUST), LT(_FUNCT, KC_LEFT), KC_LALT, SPTLGHT, KC_LGUI, KC_SPC, \
+    LT(_LOWER, KC_BSPC), LT(_RAISE, KC_ESC), \
+    KC_ENT, MISSIONCTL, TD(TD_PRN_PREVWK), TD(TD_PRN_NEXTWK), LT(_FUNCT, KC_RGHT), TT(_ARROW) \
   ),
 
   /* Lower
@@ -108,7 +108,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |M UNDO|M CUT |M COPY|MPASTE|      |             |      |      |      |      |XXXXXX|      |
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
-   * |      |      |      |      |      |XXXXXX|      |      |      |      |      |      |      |      |
+   * |      |      |      |      |      |      |XXXXXX|      |      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_LOWER] = KEYMAP( \
@@ -128,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
    * |      |XXXXXX|M CUT |M COPY|MPASTE|      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
-   * |      |      |      |      |      |      |      |      |XXXXXX|      |      |      |      |      |
+   * |      |      |      |      |      |      |      |XXXXXX|      |      |      |      |      |      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_RAISE] = KEYMAP( \
@@ -144,19 +144,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |             |  F7  |  F8  |  F9  |  F10 |  F11 |  F12 |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |M C/P |M COPY|MPASTE|SPTLGT|             |MSNCTL|      |      |      |      |      |
+   * |      |      |M C/P |M COPY|MPASTE|      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |W C/P |W COPY|WPASTE|PREVWK|             |NEXTWK|      |      |KEYMAP|      |      |
+   * |      |      |W C/P |W COPY|WPASTE|      |             |      |      |      |KEYMAP|      |      |
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
    * |      |XXXXXX|      |      |      |      |      |      |      |      |      |      |XXXXXX|      |
    * `-------------------------------------------------------------------------------------------------'
    */
   [_FUNCT] = KEYMAP( \
     KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6, KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, \
-    _______, _______, M(MAC_COPY_PASTE), MACCOPY, MACPASTE, SPTLGHT, \
-    MISSIONCTL, _______, _______, _______, _______, _______, \
-    _______, _______, M(WIN_COPY_PASTE), WINCOPY, WINPASTE, PREVWKS, \
-    NEXTWKS, _______, _______, M(SEND_KEYMAP_URI), _______, _______, \
+    _______, _______, M(MAC_COPY_PASTE), MACCOPY, MACPASTE, _______, \
+    _______, _______, _______, _______, _______, _______, \
+    _______, _______, M(WIN_COPY_PASTE), WINCOPY, WINPASTE, _______, \
+    _______, _______, _______, M(SEND_KEYMAP_URI), _______, _______, \
     _______, _______, _______, _______, _______, _______, \
     _______, _______, \
     _______, _______, _______, _______, _______, _______ \
@@ -184,19 +184,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   /* Adjust
    * ,-----------------------------------------.             ,-----------------------------------------.
-   * |      |      |      |      |      |PREVTB|             |NEXTTB|      |      |      |      |      |
+   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |SPTLGT|             |MSNCTL|      |      |      |      |      |
+   * |RGB on|RGBmod|RGBRST|      |      |      |             |      |      |      |      |RGB v-|RGB v+|
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |      |      |      |      |      |PREVWK|             |NEXTWK|      |      |      |      |      |
+   * |RGB h-|RGB h+|      |      |      |      |             |      |      |      |      |RGB s-|RGB s+|
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
    * |XXXXXX|      |      |      |      |      |      |      |      |      |      |      |      |ADMINI|
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADJUST] =  KEYMAP( \
-    _______, _______, _______, _______, _______, PREVTAB, NEXTTAB, _______, _______, _______, _______, _______, \
-    _______, _______, _______, _______, _______, SPTLGHT, MISSIONCTL, _______, _______, _______, _______, _______, \
-    _______, _______, _______, _______, _______, PREVWKS, NEXTWKS, _______, _______, _______, _______, _______, \
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+    RGB_TOG, RGB_MOD, RGBRST,  _______, _______, _______, _______, _______, _______, _______, RGB_VAD, RGB_VAI, \
+    RGB_HUD, RGB_HUI, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SAD, RGB_SAI, \
     _______, _______, _______, _______, _______, _______, \
     _______, _______, \
     _______, _______, _______, _______, _______, ADMINI \
@@ -206,17 +206,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * ,-----------------------------------------.             ,-----------------------------------------.
    * |RESET |      |      |      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |RGB on|RGBmod|      |      |      |      |             |      |      |      |      |RGB v-|RGB v+|
+   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|             |------+------+------+------+------+------|
-   * |RGB h-|RGB h+|      |      |      |      |             |      |      |      |      |RGB s-|RGB s+|
+   * |      |      |      |      |      |      |             |      |      |      |      |      |      |
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
    * |XXXXXX|      |      |      |      |      |      |      |      |      |      |      |      |XXXXXX|
    * `-------------------------------------------------------------------------------------------------'
    */
   [_ADMINI] =  KEYMAP( \
     RESET, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
-    RGB_TOG, RGB_MOD, _______, _______, _______, _______, _______, _______, _______, _______, RGB_VAD, RGB_VAI, \
-    RGB_HUD, RGB_HUI, _______, _______, _______, _______, _______, _______, _______, _______, RGB_SAD, RGB_SAI, \
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
+    _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, \
     _______, _______, _______, _______, _______, _______, \
     _______, _______, \
     _______, _______, _______, _______, _______, _______ \
@@ -266,6 +266,7 @@ qk_tap_dance_action_t tap_dance_actions[] = {
 
 // define variables for reactive RGB
 bool TOG_STATUS = false;
+bool INIT_STATUS = true;
 int RGB_current_mode;
 
 void persistent_default_layer_set(uint16_t default_layer) {
@@ -373,7 +374,64 @@ void matrix_init_user(void) {
 #ifdef SSD1306OLED
 
 void matrix_scan_user(void) {
-     iota_gfx_task();  // this is what updates the display continuously
+    #ifdef RGBLIGHT_ENABLE
+        uint8_t layer = biton32(layer_state);
+        switch (layer) {
+            case _LOWER:
+                if (TOG_STATUS) {
+                } else {
+                    RGB_current_mode = rgblight_config.mode;
+                    TOG_STATUS = true;
+                    // rgblight_mode(RGB_current_mode);
+                }
+                break;
+            case _RAISE:
+                if (TOG_STATUS) {
+                } else {
+                    RGB_current_mode = rgblight_config.mode;
+                    TOG_STATUS = true;
+                    // rgblight_mode(RGB_current_mode);
+                }
+                break;
+            case _FUNCT:
+                if (TOG_STATUS) {
+                } else {
+                    RGB_current_mode = rgblight_config.mode;
+                    TOG_STATUS = true;
+                    // rgblight_mode(RGB_current_mode);
+                }
+                break;
+            case _ARROW:
+                if (TOG_STATUS) {
+                } else {
+                    RGB_current_mode = rgblight_config.mode;
+                    TOG_STATUS = true;
+                    // rgblight_mode(RGB_current_mode);
+                }
+                break;
+            case _ADJUST:
+                if (TOG_STATUS) {
+                } else {
+                    RGB_current_mode = rgblight_config.mode;
+                    TOG_STATUS = true;
+                    rgblight_mode(15);
+                }
+                break;
+            case _ADMINI:
+                if (TOG_STATUS) {
+                } else {
+                    RGB_current_mode = rgblight_config.mode;
+                    TOG_STATUS = true;
+                    rgblight_mode(21);
+                }
+                break;
+            default:
+                TOG_STATUS = false;
+                rgblight_mode(RGB_current_mode);
+                break;
+        }
+    #endif
+    iota_gfx_task();  // this is what updates the display continuously
 }
 
 void matrix_update(struct CharacterMatrix *dest,
@@ -395,36 +453,46 @@ void render_status(struct CharacterMatrix *matrix) {
 
   // Define layers here, Have not worked out how to have text displayed for each layer. Copy down the number you see and add a case for it below
   char buf[40];
-  snprintf(buf,sizeof(buf), "Undef-%ld", layer_state);
+  snprintf(buf,sizeof(buf), "Und-%ld", layer_state);
 
   uint8_t layer = biton32(layer_state);
-  matrix_write_P(matrix, PSTR("Layer: "));
+  matrix_write_P(matrix, PSTR("Layer:"));
     switch (layer) {
         case _QWERTY:
             matrix_write_P(matrix, PSTR("QWERTY"));
             break;
         case _LOWER:
-            matrix_write_P(matrix, PSTR("Lower"));
+            matrix_write_P(matrix, PSTR("Lower "));
             break;
         case _RAISE:
-            matrix_write_P(matrix, PSTR("Raise"));
+            matrix_write_P(matrix, PSTR("Raise "));
             break;
         case _FUNCT:
-            matrix_write_P(matrix, PSTR("Function"));
+            matrix_write_P(matrix, PSTR("Funct."));
             break;
         case _ARROW:
-            matrix_write_P(matrix, PSTR("Arrow"));
+            matrix_write_P(matrix, PSTR("Arrow "));
             break;
         case _ADJUST:
             matrix_write_P(matrix, PSTR("Adjust"));
             break;
         case _ADMINI:
-            matrix_write_P(matrix, PSTR("Administrator"));
+            matrix_write_P(matrix, PSTR("Admin."));
             break;
         default:
             matrix_write(matrix, buf);
             break;
     }
+
+    #ifdef RGBLIGHT_ENABLE
+        if (INIT_STATUS) {
+            RGB_current_mode = rgblight_config.mode;
+            INIT_STATUS = false;
+        }
+        char rgbbuf[20];
+        snprintf(rgbbuf,sizeof(rgbbuf), "|RGB:%d", RGB_current_mode);
+        matrix_write(matrix, rgbbuf);
+    #endif
 }
 
 void iota_gfx_task_user(void) {
