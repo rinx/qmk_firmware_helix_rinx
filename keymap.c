@@ -86,8 +86,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    * |  [   |   Z  |      |      |      |      |             |      |      |      |      |   /  |   ]  |
    * | Shift| Raise|   X  |   C  |   V  |   B  |             |   N  |   M  |   ,  |   .  | Lower| Shift|
    * |------+------+------+------+------+------|-------------|------+------+------+------+------+------|
-   * |      | Left |      | SPOT |      |      | BS   | Esc  |      |MISSI |TD_PWK|TD_NWK| Right|      |
-   * |Adjust| Func | Alt  | LIGHT| GUI  |Space | Lower| Raise| Enter|ONCTRL|   (  |   )  | Func | Arrow|
+   * | Left | Right|      |      |      |      | BS   | Esc  |      |MISSI |TD_PWK|TD_NWK| Down |  Up  |
+   * |Adjust| Func | Alt  | GUI  | M C/P|Space | Lower| Raise| Enter|ONCTRL|   (  |   )  | Func | Arrow|
    * `-------------------------------------------------------------------------------------------------'
    */
   [_QWERTY] = KEYMAP( \
@@ -95,9 +95,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     TD(TD_CTL_SPL), KC_A, KC_S, KC_D, KC_F, KC_G, KC_H, KC_J, KC_K, KC_L, LT(_ARROW, KC_SCLN), CTL_T(KC_QUOT), \
     SFT_T(KC_LBRC), LT(_RAISE, KC_Z), KC_X, KC_C, KC_V, KC_B, \
     KC_N, KC_M, KC_COMM, KC_DOT, LT(_LOWER, KC_SLSH), SFT_T(KC_RBRC), \
-    TT(_ADJUST), LT(_FUNCT, KC_LEFT), KC_LALT, SPTLGHT, KC_LGUI, KC_SPC, \
+    LT(_ADJUST, KC_LEFT), LT(_FUNCT, KC_RGHT), KC_LALT, KC_LGUI, M(MAC_COPY_PASTE), KC_SPC, \
     LT(_LOWER, KC_BSPC), LT(_RAISE, KC_ESC), \
-    KC_ENT, MISSIONCTL, TD(TD_PRN_PREVWK), TD(TD_PRN_NEXTWK), LT(_FUNCT, KC_RGHT), TT(_ARROW) \
+    KC_ENT, MISSIONCTL, TD(TD_PRN_PREVWK), TD(TD_PRN_NEXTWK), LT(_FUNCT, KC_DOWN), LT(_ARROW, KC_UP) \
   ),
 
   /* Lower
@@ -398,7 +398,7 @@ void matrix_scan_user(void) {
                 } else {
                     RGB_current_mode = rgblight_config.mode;
                     TOG_STATUS = true;
-                    // rgblight_mode(RGB_current_mode);
+                    rgblight_mode(27);
                 }
                 break;
             case _ARROW:
@@ -406,23 +406,23 @@ void matrix_scan_user(void) {
                 } else {
                     RGB_current_mode = rgblight_config.mode;
                     TOG_STATUS = true;
-                    // rgblight_mode(RGB_current_mode);
+                    rgblight_mode(16);
                 }
                 break;
             case _ADJUST:
-                if (TOG_STATUS) {
-                } else {
-                    RGB_current_mode = rgblight_config.mode;
-                    TOG_STATUS = true;
-                    rgblight_mode(15);
-                }
+                // if (TOG_STATUS) {
+                // } else {
+                //     RGB_current_mode = rgblight_config.mode;
+                //     TOG_STATUS = true;
+                //     rgblight_mode(15);
+                // }
                 break;
             case _ADMINI:
                 if (TOG_STATUS) {
                 } else {
                     RGB_current_mode = rgblight_config.mode;
                     TOG_STATUS = true;
-                    rgblight_mode(21);
+                    rgblight_mode(20);
                 }
                 break;
             default:
